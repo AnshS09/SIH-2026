@@ -18,7 +18,7 @@ const TEAM = [
   { name: 'Naman', role: 'Backend', lane: 'Orchestration service, APIs, storage, integration and deployment', icon: 'dns', accent: '#7cf7a8' },
   { name: 'Avni', role: 'Junior Python / Embedded', lane: 'Preprocessing, datasets, QA and embedded support', icon: 'code', accent: '#ffb3ad' },
   { name: 'Kinshuk', role: 'CV / ML / Simulation', lane: 'SfM/SLAM, MVS, dynamic-object detection and simulation', icon: 'view_in_ar', accent: '#4cd7f6' },
-  { name: 'Rishav', role: 'AI/ML / R&D', lane: '2DGS, depth, semantics, regularization and heatmaps', icon: 'neurology', accent: '#ffb95f' },
+  { name: 'Saurav', role: 'AI/ML / R&D', lane: '2DGS, depth, semantics, regularization and heatmaps', icon: 'neurology', accent: '#ffb95f' },
 ];
 
 const PRINCIPLES = [

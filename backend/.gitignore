@@ -1,0 +1,8 @@
+node_modules/
+uploads/
+missions/
+telemetry/
+*.mp4
+*.mov
+.env
+sih.db
