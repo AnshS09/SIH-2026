@@ -66,9 +66,9 @@ export default function Home() {
               </p>
 
               <div className="flex flex-wrap gap-4 mt-2">
-                <a href="/gis-portal" className="group relative px-6 py-4 bg-[#4cd7f6] text-[#003640] text-[10px] font-bold uppercase tracking-widest rounded-lg flex items-center justify-center overflow-hidden transition-all hover:shadow-[0_0_20px_rgba(76,215,246,0.4)]" style={{ fontFamily: MONO }}>
+                <a href="/simulator" className="group relative px-6 py-4 bg-[#4cd7f6] text-[#003640] text-[10px] font-bold uppercase tracking-widest rounded-lg flex items-center justify-center overflow-hidden transition-all hover:shadow-[0_0_20px_rgba(76,215,246,0.4)]" style={{ fontFamily: MONO }}>
                   <span className="relative z-10 flex items-center gap-1">
-                    Launch GIS Viewer{' '}
+                    Launch Simulator{' '}
                     <span className="material-symbols-outlined text-[16px] transition-transform group-hover:translate-x-1">rocket_launch</span>
                   </span>
                   <div className="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-300 ease-out" />
@@ -194,7 +194,7 @@ export default function Home() {
                 </p>
               </Reveal>
               <Reveal delay={0.24}>
-                <a href="/gis-portal" className="group relative mt-2 px-8 py-4 bg-[#4cd7f6] text-[#003640] text-[11px] font-bold uppercase tracking-widest rounded-lg flex items-center justify-center gap-2 overflow-hidden transition-all hover:shadow-[0_0_25px_rgba(76,215,246,0.5)]" style={{ fontFamily: MONO }}>
+                <a href="/simulator" className="group relative mt-2 px-8 py-4 bg-[#4cd7f6] text-[#003640] text-[11px] font-bold uppercase tracking-widest rounded-lg flex items-center justify-center gap-2 overflow-hidden transition-all hover:shadow-[0_0_25px_rgba(76,215,246,0.5)]" style={{ fontFamily: MONO }}>
                   <span className="relative z-10 flex items-center gap-1">
                     Open GIS Portal
                     <span className="material-symbols-outlined text-[16px] transition-transform group-hover:translate-x-1">arrow_forward</span>
