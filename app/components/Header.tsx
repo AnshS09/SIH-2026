@@ -175,10 +175,10 @@ export default function Header() {
           >
             <div className="relative flex h-10 w-10 items-center justify-center rounded-xl border border-cyan-300/20 bg-cyan-300/[0.035] transition group-hover:border-cyan-300/40 group-hover:bg-cyan-300/[0.06]">
               <img
-                src="/mach-x-logo-white.png"
-                alt="MACH-X"
-                className="h-8 w-8 object-contain"
-              />
+  src="/machx-logo.png"
+  alt="MACH-X"
+  className="h-8 w-10 object-contain"
+/>
             </div>
 
             <div className="hidden sm:block">
