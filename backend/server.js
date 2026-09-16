@@ -625,13 +625,14 @@ app.post(
                     missionId
                 );
 
-            const missionOutputDir =
-                path.join(
-                    PIPELINE_ROOT,
-                    "output",
-                    `3D${missionId}`
-                );
+            const pipelineStem = `flight_${missionId}`;
 
+const missionOutputDir =
+    path.join(
+        PIPELINE_ROOT,
+        "output",
+        `3D${pipelineStem}`
+    );
             fs.mkdirSync(
                 pipelineInputDir,
                 {
@@ -662,23 +663,21 @@ app.post(
                 ).toLowerCase() || ".mp4";
 
             const videoPath =
-                path.join(
-                    pipelineInputDir,
-                    `flight${originalExtension}`
-                );
+    path.join(
+        pipelineInputDir,
+        `${pipelineStem}${originalExtension}`
+    );
 
             const telemetryPath =
-                path.join(
-                    pipelineInputDir,
-                    "flight.csv"
-                );
-
+    path.join(
+        pipelineInputDir,
+        `${pipelineStem}.csv`
+    );
             const cameraPath =
-                path.join(
-                    pipelineInputDir,
-                    "flight.camera.json"
-                );
-
+    path.join(
+        pipelineInputDir,
+        `${pipelineStem}.camera.json`
+    );
             // ------------------------------------------
             // COPY FILES INTO PIPELINE INPUT
             // ------------------------------------------
@@ -1084,6 +1083,103 @@ pipeline.main()
 
             });
         }
+    }
+);
+// ======================================================
+// 3D VIEWER + OUTPUT ASSETS
+// ======================================================
+
+app.get(
+    "/api/missions/:missionId/viewer",
+    (req, res) => {
+        const missionId = req.params.missionId;
+        const mission = missions[missionId];
+
+        if (!mission) {
+            return res.status(404).send("Mission not found");
+        }
+
+        if (
+    mission.status !== "completed" ||
+    !mission.output
+)
+
+        if (
+            mission.status !== "completed" ||
+            !mission.output
+        ) {
+            return res.status(409).send(
+                "3D reconstruction is not completed yet"
+            );
+        }
+
+        const viewerPath = path.join(
+            PIPELINE_ROOT,
+            "viewer",
+            "Drone3DViewer.html"
+        );
+
+        if (!fs.existsSync(viewerPath)) {
+            return res.status(404).send(
+                "Drone3DViewer.html not found"
+            );
+        }
+
+        res.sendFile(viewerPath);
+    }
+);
+
+
+// ======================================================
+// SERVE GENERATED 3D OUTPUT FILES
+// ======================================================
+
+app.get(
+    "/api/missions/:missionId/output/*file",
+    (req, res) => {
+        const missionId = req.params.missionId;
+        const mission = missions[missionId];
+
+        if (!mission) {
+            return res.status(404).send("Mission not found");
+        }
+
+
+        if (!mission.output) {
+            return res.status(404).send("Output not ready");
+        }
+
+        const outputDir = mission.output?.directory;
+
+if (!outputDir) {
+    return res.status(404).send("Output not ready");
+}
+
+const resolvedOutputDir = path.resolve(outputDir);
+
+        const requestedFile = Array.isArray(req.params.file)
+    ? req.params.file.join("/")
+    : (req.params.file || "");
+
+        const filePath = path.resolve(
+    resolvedOutputDir,
+    requestedFile
+);
+
+const rootPath =
+    resolvedOutputDir + path.sep;
+
+        // Prevent accessing files outside mission output
+        if (
+            !filePath.startsWith(rootPath) ||
+            !fs.existsSync(filePath)
+        ) {
+            return res.status(404).send(
+                "Output file not found"
+            );
+        }
+
+        res.sendFile(filePath);
     }
 );
 
